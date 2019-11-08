@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:jms="http://www.mulesoft.org/schema/mule/jms"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/current/mule-jms.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<jms:config name="JMS_Config" doc:name="JMS Config" doc:id="33a2f29a-5ff8-4584-88a0-cd651d8f12fe" >
+		<jms:active-mq-connection />
+	</jms:config>
+	<flow name="JMSFlow" doc:id="61447f54-4821-48cf-b6ee-5134813d9741" >
+		<jms:listener doc:id="e1df7a0c-2473-4113-8269-395c8801d593" config-ref="JMS_Config" destination="Users/Nahi/Documents/Mule_File"/>
+		<ee:transform doc:name="Transform Message" doc:id="bc6e6e9f-52de-4414-af38-1f7542aedd8b" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
